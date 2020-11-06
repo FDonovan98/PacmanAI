@@ -15,6 +15,7 @@ public class IsClose : BtNode
         m_distanceLimit = distanceLimit;
     }
 
+    // If distanceFromSelf is false distance is taken from the blackboard target to the test target.
     public IsClose(float distanceLimit, string targetTag)
     {
         m_distanceLimit = distanceLimit;

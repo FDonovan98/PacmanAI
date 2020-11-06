@@ -364,6 +364,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pill (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 3133329229218607279, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_TagString
+      value: powerpill
+      objectReference: {fileID: 0}
     - target: {fileID: 7468413358560393593, guid: 9d43e8781f32dd04c85ad109a4df270e,
         type: 3}
       propertyPath: m_LocalPosition.x

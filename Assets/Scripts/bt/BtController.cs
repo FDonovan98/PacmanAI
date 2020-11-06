@@ -10,15 +10,15 @@ public class BtController : MonoBehaviour
     // method to create the tree, sorry - no GUI for this we need to build it by hand
     protected BtNode createTree()
     {
-
         BtNode isTargetSelected = new Sequence(new IsTargeting("pill"), new Inverter(new IsClose(1)));
         BtNode stickyTarget = new Selector(isTargetSelected, new TargetRandom("pill"));
 
         BtNode wonderToPill = new Sequence(stickyTarget, new TowardsTarget());
-        // return wonderToPill;
 
         BtNode chasePlayer = new Sequence(new IsClose(3, "Player"), new TargetPlayer("Player"), new TowardsTarget());
-        return new Selector(chasePlayer, wonderToPill);
+
+        BtNode guardPower = new Sequence(new FindClosestPair("Player", "powerpill"), new TowardsTarget());
+        return new Selector(chasePlayer, guardPower, wonderToPill);
     }
 
     // Start is called before the first frame update
