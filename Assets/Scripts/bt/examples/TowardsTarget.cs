@@ -30,4 +30,9 @@ public class TowardsTarget : BtNode
         return NodeState.SUCCESS;
     }
 
+    public override string getName()
+    {
+        return "TowardsTarget";
+    }
+
 }

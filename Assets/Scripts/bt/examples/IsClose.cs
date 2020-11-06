@@ -75,4 +75,9 @@ public class IsClose : BtNode
         }
     }
 
+    public override string getName()
+    {
+        return "isClose";
+    }
+
 }
