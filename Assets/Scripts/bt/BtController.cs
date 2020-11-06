@@ -9,11 +9,16 @@ public class BtController : MonoBehaviour
 
     // method to create the tree, sorry - no GUI for this we need to build it by hand
     protected BtNode createTree() {
-        BtNode stickyTarget = new Selector(new Sequence(new IsTargeting("pill"), new Inverter(new IsClose(1))), new TargetRandom("pill"));
+
+
+        BtNode isTargetSelected = new Sequence(new IsTargeting("pill"), new Inverter(new IsClose(1)));
+        BtNode stickyTarget = new Selector(isTargetSelected, new TargetRandom("pill"));
+
         BtNode wonderToPill = new Sequence(stickyTarget, new TowardsTarget());
         return wonderToPill;
 
         //BtNode chasePlayer = new Sequence(new TargetPlayer("Player"), new IsClose(3), new TowardsTarget());
+        //return chasePlayer;
         //return new Selector(chasePlayer, wonderToPill);
     }
 
