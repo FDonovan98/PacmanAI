@@ -14,7 +14,8 @@ public class TargetRandom : BtNode
     public override NodeState evaluate(Blackboard blackboard)
     {
         GameObject[] tagged = GameObject.FindGameObjectsWithTag(m_targetTag);
-        if (tagged.Length == 0) {
+        if (tagged.Length == 0)
+        {
             return NodeState.FAILURE;
         }
 

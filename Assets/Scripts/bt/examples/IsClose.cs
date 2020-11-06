@@ -2,22 +2,75 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsClose : BtNode {
+public class IsClose : BtNode
+{
     private float m_distanceLimit = 10;
 
-    public IsClose(float distanceLimit){
+    // Vars for if test target is passed in.
+    private GameObject[] m_possibleTargets = null;
+    private GameObject m_testTarget = null;
+
+    public IsClose(float distanceLimit)
+    {
         m_distanceLimit = distanceLimit;
     }
 
-    public override NodeState evaluate(Blackboard blackboard) {
-        if ( blackboard.target == null) {
-            return NodeState.FAILURE;
+    public IsClose(float distanceLimit, string targetTag)
+    {
+        m_distanceLimit = distanceLimit;
+        GameObject[] tags = GameObject.FindGameObjectsWithTag(targetTag);
+
+        if (tags.Length == 0)
+        {
+            return;
         }
 
-        float distance = (blackboard.owner.transform.position - blackboard.target.transform.position).magnitude;
-        if (distance < m_distanceLimit) {
+        m_possibleTargets = tags;
+    }
+
+    public override NodeState evaluate(Blackboard blackboard)
+    {
+        float distance;
+
+        if (m_testTarget == null)
+        {
+            if (m_possibleTargets != null)
+            {
+                float currDist = float.MaxValue;
+
+                foreach (GameObject element in m_possibleTargets)
+                {
+                    float newDist = Vector3.Distance(blackboard.owner.transform.position, element.transform.position);
+                    if (newDist < currDist)
+                    {
+                        currDist = newDist;
+                        m_testTarget = element;
+                    }
+                }
+
+                distance = currDist;
+            }
+            else
+            {
+                if (blackboard.target == null)
+                {
+                    return NodeState.FAILURE;
+                }
+
+                distance = Vector3.Distance(blackboard.owner.transform.position, blackboard.target.transform.position);
+            }
+        }
+        else
+        {
+            distance = Vector3.Distance(blackboard.owner.transform.position, m_testTarget.transform.position);
+        }
+
+        if (distance < m_distanceLimit)
+        {
             return NodeState.SUCCESS;
-        } else {
+        }
+        else
+        {
             return NodeState.FAILURE;
         }
     }
