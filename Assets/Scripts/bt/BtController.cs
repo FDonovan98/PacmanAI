@@ -2,27 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BtController : MonoBehaviour
+public abstract class BtController : MonoBehaviour
 {
     private BtNode m_root;
     private Blackboard m_blackboard;
 
     // method to create the tree, sorry - no GUI for this we need to build it by hand
-    protected BtNode createTree()
-    {
-        BtNode isTargetSelected = new Sequence(new IsTargeting("pill"), new Inverter(new IsClose(1)));
-        BtNode stickyTarget = new Selector(isTargetSelected, new TargetRandom("pill"));
-
-        BtNode wonderToPill = new Sequence(stickyTarget, new TowardsTarget());
-
-        BtNode chasePlayer = new Sequence(new IsClose(3, "Player"), new TargetPlayer("Player"), new TowardsTarget());
-
-        BtNode guardPower = new Sequence(new FindClosestPair("Player", "powerpill"), new TowardsTarget());
-        return new Selector(chasePlayer, guardPower, wonderToPill);
-    }
+    abstract protected BtNode createTree();
 
     // Start is called before the first frame update
-    void Start()
+    virtual protected void Start()
     {
         if (m_root == null)
         {
@@ -33,7 +22,7 @@ public class BtController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    virtual protected void Update()
     {
         NodeState result = m_root.evaluate(m_blackboard);
         if (result != NodeState.RUNNING)
