@@ -369,6 +369,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: powerpill
       objectReference: {fileID: 0}
+    - target: {fileID: 4008016911890361438, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22ffc881fc611c44cab0a18e9e4bb8d5, type: 2}
     - target: {fileID: 7468413358560393593, guid: 9d43e8781f32dd04c85ad109a4df270e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -612,6 +617,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: pill (84)
       objectReference: {fileID: 0}
+    - target: {fileID: 3133329229218607279, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_TagString
+      value: powerpill
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008016911890361438, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22ffc881fc611c44cab0a18e9e4bb8d5, type: 2}
     - target: {fileID: 7468413358560393593, guid: 9d43e8781f32dd04c85ad109a4df270e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6429,6 +6444,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: pill (87)
       objectReference: {fileID: 0}
+    - target: {fileID: 3133329229218607279, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_TagString
+      value: powerpill
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008016911890361438, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22ffc881fc611c44cab0a18e9e4bb8d5, type: 2}
     - target: {fileID: 7468413358560393593, guid: 9d43e8781f32dd04c85ad109a4df270e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9488,6 +9513,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: pill (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 3133329229218607279, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_TagString
+      value: powerpill
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008016911890361438, guid: 9d43e8781f32dd04c85ad109a4df270e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22ffc881fc611c44cab0a18e9e4bb8d5, type: 2}
     - target: {fileID: 7468413358560393593, guid: 9d43e8781f32dd04c85ad109a4df270e,
         type: 3}
       propertyPath: m_LocalPosition.x
