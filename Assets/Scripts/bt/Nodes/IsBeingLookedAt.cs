@@ -13,7 +13,7 @@ public class IsBeingLookedAt : BtNode
 
         Vector3 direction = blackboard.target.transform.position - blackboard.owner.transform.position;
         Vector2 direction2D = new Vector2(direction.x, direction.z).normalized;
-        Vector2 targetView2D = new Vector2(blackboard.target.transform.forward.x, blackboard.target.transform.forward.z).normalized;
+        Vector2 targetView2D = new Vector2(blackboard.target.GetComponent<Rigidbody>().velocity.x, blackboard.target.GetComponent<Rigidbody>().velocity.z).normalized;
         float angle = Vector3.Dot(direction2D, targetView2D);
         angle = Mathf.Acos(angle);
         angle *= Mathf.Rad2Deg;
