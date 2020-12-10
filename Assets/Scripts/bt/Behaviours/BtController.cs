@@ -27,7 +27,6 @@ public abstract class BtController : MonoBehaviour
         NodeState result = m_root.evaluate(m_blackboard);
         if (result != NodeState.RUNNING)
         {
-            Debug.Log("ResetState");
             m_root.reset();
         }
     }
