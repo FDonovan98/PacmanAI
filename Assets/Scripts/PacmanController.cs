@@ -7,7 +7,7 @@ public class PacmanController : MonoBehaviour
     public const float POWER_PILL_TIMER = 10;
     public const int PILL_SCORE = 10;
     public const int GHOST_SCORE = 100;
-    public const float SPEED_FACTOR = 2.5F;
+    public const float SPEED_FACTOR = 5f;
 
     private Rigidbody body;
     private GameController game;
@@ -45,12 +45,15 @@ public class PacmanController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "ghost") {
+        if (col.gameObject.tag == "ghost")
+        {
             if (isPowered())
             {
                 game.score += GHOST_SCORE;
                 Destroy(col.gameObject);
-            } else {
+            }
+            else
+            {
                 Debug.Log("test");
                 game.lives--;
                 Destroy(gameObject);

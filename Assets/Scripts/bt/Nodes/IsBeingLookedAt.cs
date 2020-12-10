@@ -19,7 +19,7 @@ public class IsBeingLookedAt : BtNode
         angle *= Mathf.Rad2Deg;
         Debug.Log(angle);
 
-        if (angle <= 225 && angle >= 135)
+        if (angle <= 270 && angle >= 90)
         {
             return NodeState.SUCCESS;
         }
