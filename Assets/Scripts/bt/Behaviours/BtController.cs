@@ -6,6 +6,7 @@ public abstract class BtController : MonoBehaviour
 {
     private BtNode m_root;
     private Blackboard m_blackboard;
+    public GameObject itemPool;
 
     // method to create the tree, sorry - no GUI for this we need to build it by hand
     abstract protected BtNode createTree();
@@ -16,8 +17,13 @@ public abstract class BtController : MonoBehaviour
         if (m_root == null)
         {
             m_root = createTree();
-            m_blackboard = new Blackboard();
-            m_blackboard.owner = gameObject;
+            // Initialised with int array. 
+            // Each element corresponds to it's Enum MemoryType element.
+            m_blackboard = new Blackboard(gameObject, itemPool, new int[]
+            {
+                5,
+                1
+            });
         }
     }
 
