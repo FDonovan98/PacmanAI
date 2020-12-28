@@ -1,4 +1,15 @@
-﻿using System.Collections;
+﻿// Title: BtController.cs
+// Author: Joseph Walton-Rivers
+// Collaborators: Harry Donovan
+// Date Last Edited: 28/12/2020
+// Last Edited By: Harry Donovan
+// References:
+// File Source: Assets\Scripts\bt\Behaviours\BtController.cs
+// Dependencies: Assets\Scripts\bt\Blackboard.cs
+//               Assets\Scripts\bt\BtNode.cs
+// Description: Abstract class used as a base to build different ai behaviour scripts.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

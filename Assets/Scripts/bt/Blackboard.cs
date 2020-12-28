@@ -1,4 +1,14 @@
-﻿using System;
+﻿// Title: Blackboard.cs
+// Author: Joseph Walton-Rivers
+// Collaborators: Harry Donovan
+// Date Last Edited: 23/12/2020
+// Last Edited By: Harry Donovan
+// References: 
+// File Source: Assets\Scripts\bt\Blackboard.cs
+// Dependencies: Assets\Scripts\AIRememberedItem.cs
+// Description: Blackboard used for each ai agent. Expanded to allow each ai agent to have a pool of items it remembers the locations of. These pools of gameobjects are generated at initilisation and then updated throughout runtime.
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
