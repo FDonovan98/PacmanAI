@@ -2,6 +2,6 @@
 {
     protected override BtNode createTree()
     {
-        return new Selector(AwayFromPlayer(7.0f), MoveToPlayer(100.0f));
+        return new Selector(AwayFromPlayer(7.0f, false), MoveToPlayer(100.0f));
     }
 }

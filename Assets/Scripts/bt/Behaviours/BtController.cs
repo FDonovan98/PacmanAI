@@ -48,8 +48,13 @@ public abstract class BtController : MonoBehaviour
         }
     }
 
-    virtual protected BtNode AwayFromPlayer(float fleeDistance)
+    virtual protected BtNode AwayFromPlayer(float fleeDistance, bool checkIfPowered = true)
     {
+        if (checkIfPowered)
+        {
+            return new Sequence(new TargetPlayer("Player"), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
+        }
+
         return new Sequence(new TargetPlayer("Player"), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
     }
 

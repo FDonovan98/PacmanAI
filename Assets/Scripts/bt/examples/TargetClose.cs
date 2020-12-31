@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TargetPlayer : BtNode {
+public class TargetPlayer : BtNode
+{
     private string m_targetTag;
 
-    public TargetPlayer(string targetTag) {
+    public TargetPlayer(string targetTag)
+    {
         this.m_targetTag = targetTag;
     }
 
-    public override NodeState evaluate(Blackboard blackboard) {
+    public override NodeState evaluate(Blackboard blackboard)
+    {
         GameObject[] tagged = GameObject.FindGameObjectsWithTag(m_targetTag);
 
         GameObject closest = null;
         float closestDistance = float.MaxValue;
 
-        foreach (GameObject gObject in tagged) {
+        foreach (GameObject gObject in tagged)
+        {
             float distance = Vector3.Distance(blackboard.owner.transform.position, gObject.transform.position);
-            if (distance < closestDistance) {
+            if (distance < closestDistance)
+            {
                 closest = gObject;
                 closestDistance = distance;
             }
