@@ -8,9 +8,10 @@ public class ShyFollowPlayer : BtController
     {
         // BtNode awayFromPlayer = new Sequence(new IsClose(3, "Player"), new TargetPlayer("Player"), new AwayFromTarget());
 
-        BtNode node = new Sequence(new TargetPlayer("Player"), new IsBeingLookedAt(), new AwayFromTarget(7.0f));
+        BtNode awayFromPlayer = new Sequence(new TargetPlayer("Player"), new IsBeingMovedTo(), new AwayFromTarget(7.0f));
+
         BtNode followPlayer = new Sequence(new IsClose(100, "Player"), new TargetPlayer("Player"), new TowardsTarget());
 
-        return new Selector(node, followPlayer);
+        return new Selector(awayFromPlayer, followPlayer);
     }
 }

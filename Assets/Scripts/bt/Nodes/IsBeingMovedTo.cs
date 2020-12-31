@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsBeingLookedAt : BtNode
+public class IsBeingMovedTo : BtNode
 {
     public override NodeState evaluate(Blackboard blackboard)
     {
@@ -29,6 +29,6 @@ public class IsBeingLookedAt : BtNode
 
     public override string getName()
     {
-        return "IsBeingLookedAt";
+        return "IsBeingMovedTo";
     }
 }
