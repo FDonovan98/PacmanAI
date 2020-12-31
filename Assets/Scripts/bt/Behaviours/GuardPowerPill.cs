@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GuardPowerPill : BtController
+﻿public class GuardPowerPill : BtController
 {
     protected override BtNode createTree()
     {
@@ -11,9 +7,8 @@ public class GuardPowerPill : BtController
 
         BtNode wonderToPill = new Sequence(stickyTarget, new TowardsTarget());
 
-        BtNode chasePlayer = new Sequence(new IsClose(3, "Player"), new TargetPlayer("Player"), new TowardsTarget());
-
         BtNode guardPower = new Sequence(new FindClosestPair("Player", "powerpill"), new TowardsTarget());
-        return new Selector(chasePlayer, guardPower, wonderToPill);
+
+        return new Selector(MoveToPlayer(3.0f), guardPower, wonderToPill);
     }
 }

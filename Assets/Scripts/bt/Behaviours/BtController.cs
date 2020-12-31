@@ -47,4 +47,14 @@ public abstract class BtController : MonoBehaviour
             m_root.reset();
         }
     }
+
+    virtual protected BtNode AwayFromPlayer(float fleeDistance)
+    {
+        return new Sequence(new TargetPlayer("Player"), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
+    }
+
+    virtual protected BtNode MoveToPlayer(float huntRange)
+    {
+        return new Sequence(new IsClose(huntRange, "Player"), new TargetPlayer("Player"), new TowardsTarget());
+    }
 }
