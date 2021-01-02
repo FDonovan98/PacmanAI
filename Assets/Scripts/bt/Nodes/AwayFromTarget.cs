@@ -26,17 +26,17 @@ public class AwayFromTarget : BtNode
             return NodeState.FAILURE;
         }
 
-        if (Vector3.Distance(blackboard.owner.transform.position, blackboard.target.transform.position) > m_fleeDistance)
+        if (Vector3.Distance(blackboard.owner.transform.position, blackboard.target.position) > m_fleeDistance)
         {
             return NodeState.FAILURE;
         }
 
-        Vector3 targetPos = blackboard.owner.transform.position - blackboard.target.transform.position;
+        Vector3 targetPos = blackboard.owner.transform.position - blackboard.target.position;
         targetPos *= m_fleeDistance;
-        targetPos += blackboard.target.transform.position;
+        targetPos += blackboard.target.position;
         m_agent.SetDestination(targetPos);
 
-        if (Vector3.Distance(blackboard.owner.transform.position, blackboard.target.transform.position) < m_fleeDistance)
+        if (Vector3.Distance(blackboard.owner.transform.position, blackboard.target.position) < m_fleeDistance)
         {
             return NodeState.RUNNING;
         }

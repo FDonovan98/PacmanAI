@@ -18,14 +18,14 @@ public class TargetPlayer : BtNode
 
     public override NodeState evaluate(Blackboard blackboard)
     {
-        GameObject closest = null;
+        AIRememberedItem closest = null;
         float closestDistance = float.MaxValue;
 
-        foreach (GameObject gObject in blackboard.rememberedItems[(int)m_memoryType])
+        foreach (AIRememberedItem gObject in blackboard.rememberedItems[(int)m_memoryType])
         {
-            if (gObject.GetComponent<AIRememberedItem>().trackingRealObject)
+            if (gObject.trackingRealObject)
             {
-                float distance = Vector3.Distance(blackboard.owner.transform.position, gObject.transform.position);
+                float distance = Vector3.Distance(blackboard.owner.transform.position, gObject.position);
                 if (distance < closestDistance)
                 {
                     closest = gObject;

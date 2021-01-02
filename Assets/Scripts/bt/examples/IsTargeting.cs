@@ -22,7 +22,8 @@ public class IsTargeting : BtNode
         {
             Debug.Log("keeping pill selected");
             return NodeState.SUCCESS;
-        } else
+        }
+        else
         {
             return NodeState.FAILURE;
         }

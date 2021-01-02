@@ -39,16 +39,16 @@ public class IsClose : BtNode
                 return NodeState.FAILURE;
             }
 
-            distance = Vector3.Distance(blackboard.owner.transform.position, blackboard.target.transform.position);
+            distance = Vector3.Distance(blackboard.owner.transform.position, blackboard.target.position);
         }
         else
         {
             float newDist;
-            foreach (GameObject element in blackboard.rememberedItems[(int)memoryType])
+            foreach (AIRememberedItem element in blackboard.rememberedItems[(int)memoryType])
             {
-                if (element.GetComponent<AIRememberedItem>().trackingRealObject)
+                if (element.trackingRealObject)
                 {
-                    newDist = Vector3.Distance(element.transform.position, blackboard.owner.transform.position);
+                    newDist = Vector3.Distance(element.position, blackboard.owner.transform.position);
                     if (newDist < distance)
                     {
                         distance = newDist;

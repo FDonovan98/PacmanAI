@@ -11,13 +11,13 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(Transform))]
-public class AIRememberedItem : MonoBehaviour
+public class AIRememberedItem
 {
     public float timeUpdated;
     MemoryType memoryType;
     Blackboard blackboard;
     public bool trackingRealObject;
+    public Vector3 position;
 
     public void Initialise(Blackboard blackboard, MemoryType memoryType)
     {
@@ -29,12 +29,11 @@ public class AIRememberedItem : MonoBehaviour
         this.memoryType = memoryType;
         this.blackboard = blackboard;
         UpdateLocation(pos);
-        this.tag = "RememberedItem";
     }
 
     public void UpdateLocation(Vector3 pos)
     {
-        this.transform.position = pos;
+        this.position = pos;
         timeUpdated = Time.timeSinceLevelLoad;
         trackingRealObject = true;
     }

@@ -20,9 +20,9 @@ public class TowardsTarget : BtNode
             return NodeState.FAILURE;
         }
 
-        m_agent.SetDestination(blackboard.target.transform.position);
+        m_agent.SetDestination(blackboard.target.position);
 
-        if (Vector3.Distance(blackboard.owner.transform.position, blackboard.target.transform.position) > 0.5)
+        if (Vector3.Distance(blackboard.owner.transform.position, blackboard.target.position) > 0.5)
         {
             return NodeState.RUNNING;
         }

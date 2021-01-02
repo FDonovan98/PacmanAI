@@ -24,7 +24,7 @@ public class IsBeingMovedTo : BtNode
         //     return NodeState.FAILURE;
         // }
 
-        Vector3 agentToTargetdirection = blackboard.target.transform.position - blackboard.owner.transform.position;
+        Vector3 agentToTargetdirection = blackboard.target.position - blackboard.owner.transform.position;
         Vector2 agentToTargetdirection2D = new Vector2(agentToTargetdirection.x, agentToTargetdirection.z).normalized;
 
         // Fetch the index ref for the two newest remembered player positions.
@@ -35,21 +35,20 @@ public class IsBeingMovedTo : BtNode
         int secondNewestIndex = int.MaxValue;
         int i = 0;
 
-        foreach (GameObject element in blackboard.rememberedItems[(int)MemoryType.Player])
+        foreach (AIRememberedItem element in blackboard.rememberedItems[(int)MemoryType.Player])
         {
-            AIRememberedItem aIRememberedItem = element.GetComponent<AIRememberedItem>();
-            if (aIRememberedItem.trackingRealObject)
+            if (element.trackingRealObject)
             {
-                if (aIRememberedItem.timeUpdated > newestTime)
+                if (element.timeUpdated > newestTime)
                 {
                     secondNewestTime = newestTime;
                     secondNewestIndex = newestIndex;
-                    newestTime = aIRememberedItem.timeUpdated;
+                    newestTime = element.timeUpdated;
                     newestIndex = i;
                 }
-                else if (aIRememberedItem.timeUpdated > secondNewestTime)
+                else if (element.timeUpdated > secondNewestTime)
                 {
-                    secondNewestTime = aIRememberedItem.timeUpdated;
+                    secondNewestTime = element.timeUpdated;
                     secondNewestIndex = i;
                 }
             }
@@ -61,7 +60,7 @@ public class IsBeingMovedTo : BtNode
             return NodeState.FAILURE;
         }
 
-        Vector3 targetMovementDirection = blackboard.rememberedItems[(int)MemoryType.Player][newestIndex].transform.position - blackboard.rememberedItems[(int)MemoryType.Player][secondNewestIndex].transform.position;
+        Vector3 targetMovementDirection = blackboard.rememberedItems[(int)MemoryType.Player][newestIndex].position - blackboard.rememberedItems[(int)MemoryType.Player][secondNewestIndex].position;
         Vector2 targetMovementDirection2D = new Vector2(targetMovementDirection.x, targetMovementDirection.z).normalized;
 
         float angle = Vector3.Dot(agentToTargetdirection2D, targetMovementDirection2D);
