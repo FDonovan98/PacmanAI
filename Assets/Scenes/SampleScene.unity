@@ -11224,8 +11224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47641aa7db6b6148b2dc8b9d14cb331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 20
-  rememberedObjectDisplacementTolerance: 1
+  detectionRange: 10
+  rememberedObjectDisplacementTolerance: 0.3
   rememberedItemCounts: 020000000500000004000000
 --- !u!135 &2118311779
 SphereCollider:

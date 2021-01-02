@@ -31,18 +31,6 @@ public class AIRememberedItem
         UpdateLocation(pos);
     }
 
-    public void Initialise(Blackboard blackboard, MemoryType memoryType)
-    {
-        Initialise(blackboard, memoryType, new Vector3(1000.0f, 1000.0f));
-        trackingRealObject = false;
-    }
-    public void Initialise(Blackboard blackboard, MemoryType memoryType, Vector3 pos)
-    {
-        this.memoryType = memoryType;
-        this.blackboard = blackboard;
-        UpdateLocation(pos);
-    }
-
     public void UpdateLocation(Vector3 pos)
     {
         this.position = pos;
