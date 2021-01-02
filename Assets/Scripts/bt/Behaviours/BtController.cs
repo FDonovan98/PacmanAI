@@ -59,38 +59,31 @@ public abstract class BtController : MonoBehaviour
 
         foreach (GameObject element in itemsInRange)
         {
-            if (element.tag == "Player")
-            {
-                UpdateRememberedItems(MemoryType.Player, element.gameObject);
-            }
-
-            if (element.tag == "pill")
-            {
-                UpdateRememberedItems(MemoryType.Pill, element.gameObject);
-            }
-
+            CheckTagsToUpdateItems(element);
         }
     }
 
-    // Add collider to list itemsInRange.
-    // Check if item is visible.
-    // If a remembered object check there is an actual object within rememberedObjectDisplacementTolerance.
-    // If not flag object as having been moved/ destroyed.
-    // If object check for remembered object that matches within rememberedObjectDisplacementTolerance.
-    // If none then update remembered objects, removing farthest object if no free space. 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         itemsInRange.Add(other.gameObject);
 
+        CheckTagsToUpdateItems(other.gameObject);
+
+    }
+
+    // Call local UpdateRememberedItems function dependant on other's tag.
+    private void CheckTagsToUpdateItems(GameObject other)
+    {
         if (other.tag == "Player")
         {
-            UpdateRememberedItems(MemoryType.Player, other.gameObject);
+            UpdateRememberedItems(MemoryType.Player, other);
+            return;
         }
 
         if (other.tag == "pill")
         {
-            UpdateRememberedItems(MemoryType.Pill, other.gameObject);
+            UpdateRememberedItems(MemoryType.Pill, other);
+            return;
         }
     }
 
@@ -108,15 +101,16 @@ public abstract class BtController : MonoBehaviour
         return true;
     }
 
+    // Checks if agent has line of site to other and then calls the blackboard function to update remembered items.
     void UpdateRememberedItems(MemoryType memoryType, GameObject other)
     {
         if (CheckForLOS(other))
         {
-            Debug.Log("LOS " + other.name);
             m_blackboard.UpdateRememberedItems(memoryType, other);
         }
     }
 
+    // Remove items from itemsInRange when they are outside of detection range.
     private void OnTriggerExit(Collider other)
     {
         itemsInRange.Remove(other.gameObject);
