@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class TargetRandom : BtNode
 {
-    private string m_targetTag;
+    private MemoryType m_memoryType;
 
-    public TargetRandom(string targetTag)
+    public TargetRandom(MemoryType memoryType)
     {
-        this.m_targetTag = targetTag;
+        m_memoryType = memoryType;
     }
 
     public override NodeState evaluate(Blackboard blackboard)
     {
-        GameObject[] tagged = GameObject.FindGameObjectsWithTag(m_targetTag);
-        if (tagged.Length == 0)
+        List<AIRememberedItem> possibleItems = new List<AIRememberedItem>();
+        foreach (AIRememberedItem element in blackboard.rememberedItems[(int)m_memoryType])
+        {
+            if (element.trackingRealObject)
+            {
+                possibleItems.Add(element);
+            }
+        }
+
+        if (possibleItems.Count == 0)
         {
             return NodeState.FAILURE;
         }
 
-        // pick a random one
-        GameObject randomTag = tagged[Random.Range(0, tagged.Length)];
-        blackboard.target = randomTag;
+        blackboard.target = possibleItems[Random.Range(0, possibleItems.Count)];;
         m_nodeState = NodeState.SUCCESS;
         return m_nodeState;
     }

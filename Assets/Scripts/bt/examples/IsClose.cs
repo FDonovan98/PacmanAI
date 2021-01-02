@@ -12,7 +12,6 @@ public class IsClose : BtNode
 
     bool useBlackboardTarget;
     private MemoryType memoryType;
-    private GameObject m_testTarget = null;
 
     // If no target is passed it is assumed to use the blackboards target.
     public IsClose(float distanceLimit)

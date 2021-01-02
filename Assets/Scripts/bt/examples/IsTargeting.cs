@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class IsTargeting : BtNode
 {
-    private string m_targetTag;
+    private MemoryType m_memoryType;
 
-    public IsTargeting(string targetTag)
+    public IsTargeting(MemoryType memoryType)
     {
-        m_targetTag = targetTag;
+        m_memoryType = memoryType;
     }
 
     public override NodeState evaluate(Blackboard blackboard)
@@ -18,7 +18,7 @@ public class IsTargeting : BtNode
             return NodeState.FAILURE;
         }
 
-        if (blackboard.target.tag == m_targetTag && blackboard.target.activeInHierarchy)
+        if (blackboard.target.memoryType == m_memoryType)
         {
             Debug.Log("keeping pill selected");
             return NodeState.SUCCESS;

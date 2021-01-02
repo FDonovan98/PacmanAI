@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 public class BtWindow : EditorWindow
 {
@@ -15,9 +14,8 @@ public class BtWindow : EditorWindow
     protected BtNode createTree()
     {
 
-
-        BtNode isTargetSelected = new Sequence(new IsTargeting("pill"), new Inverter(new IsClose(1)));
-        BtNode stickyTarget = new Selector(isTargetSelected, new TargetRandom("pill"));
+        BtNode isTargetSelected = new Sequence(new IsTargeting(MemoryType.Pill), new Inverter(new IsClose(1)));
+        BtNode stickyTarget = new Selector(isTargetSelected, new TargetRandom(MemoryType.Pill));
 
         BtNode wonderToPill = new Sequence(stickyTarget, new TowardsTarget());
         return wonderToPill;
@@ -64,7 +62,8 @@ public class BtWindow : EditorWindow
     }
 
     private List<NodeGroup> m_vertex = new List<NodeGroup>();
-    private Dictionary<int, List<BtNode>> treeToLayers(BtNode root) {
+    private Dictionary<int, List<BtNode>> treeToLayers(BtNode root)
+    {
         Dictionary<int, List<BtNode>> layerAgg = new Dictionary<int, List<BtNode>>();
 
         Queue<NodeGroup> unexpanded = new Queue<NodeGroup>();
@@ -76,7 +75,7 @@ public class BtWindow : EditorWindow
             NodeGroup current = unexpanded.Dequeue();
             upsert(layerAgg, current.depth, current.child);
 
-            foreach (BtNode child in current.child.children() )
+            foreach (BtNode child in current.child.children())
             {
                 unexpanded.Enqueue(new NodeGroup(current.child, child, current.depth + 1));
                 m_vertex.Add(new NodeGroup(current.child, child, current.depth + 1));
@@ -86,12 +85,12 @@ public class BtWindow : EditorWindow
         return layerAgg;
     }
 
-
-    private int getMaxLayerWidth( Dictionary<int, List<BtNode>> layers )
+    private int getMaxLayerWidth(Dictionary<int, List<BtNode>> layers)
     {
         int largestLayer = 0;
-        foreach ( var pair in layers ) {
-            largestLayer = System.Math.Max( largestLayer, pair.Value.Count );
+        foreach (var pair in layers)
+        {
+            largestLayer = System.Math.Max(largestLayer, pair.Value.Count);
         }
         return largestLayer;
     }
@@ -109,7 +108,7 @@ public class BtWindow : EditorWindow
 
         int stepSize = 75;
         float layerHeight = 75;
-        foreach( var pair in layers )
+        foreach (var pair in layers)
         {
             float size = pair.Value.Count * 75;
             float paddingSpace = windowWidth - size;
@@ -117,7 +116,8 @@ public class BtWindow : EditorWindow
             float padding = paddingSpace / (float)pair.Value.Count;
             float x = padding / 2;
 
-            foreach ( BtNode child in pair.Value ) {
+            foreach (BtNode child in pair.Value)
+            {
                 Rect nodeRect = new Rect(x, layerHeight, 75, 50);
                 drawNode(nodeRect, child, false);
 
@@ -130,13 +130,13 @@ public class BtWindow : EditorWindow
         }
 
         // draw vertex list
-        foreach( var vertex in m_vertex ) {
+        foreach (var vertex in m_vertex)
+        {
             if (vertex.parent != null)
             {
                 Handles.DrawDottedLine(nodePositions[vertex.parent], nodePositions[vertex.child], 5.0f);
             }
         }
-
 
         stepSize = 75;
         layerHeight = 75;

@@ -22,7 +22,7 @@ public class Blackboard
         get;
     }
 
-    public Blackboard(GameObject owner, GameObject itemPool, int[] maxRememberedItems, float rememberedObjectDisplacementTolerance)
+    public Blackboard(GameObject owner, int[] maxRememberedItems, float rememberedObjectDisplacementTolerance)
     {
         this.owner = owner;
         this.rememberedObjectDisplacementTolerance = rememberedObjectDisplacementTolerance;

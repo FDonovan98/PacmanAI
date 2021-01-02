@@ -2,49 +2,52 @@ using UnityEngine;
 
 public class FindClosestPair : BtNode
 {
-    GameObject[] m_sourceObjects = null;
-    GameObject[] m_targetObjects = null;
+    MemoryType m_sourceMemoryType;
+    MemoryType m_targetMemoryType;
 
-    public FindClosestPair(string sourceTag, string targetTag)
+    public FindClosestPair(MemoryType sourceMemoryType, MemoryType targetMemoryType)
     {
-        GameObject[] tags = GameObject.FindGameObjectsWithTag(sourceTag);
-        if (tags.Length == 0)
-        {
-            return;
-        }
-        m_sourceObjects = tags;
-
-        tags = GameObject.FindGameObjectsWithTag(targetTag);
-        if (tags.Length == 0)
-        {
-            return;
-        }
-        m_targetObjects = tags;
+        m_sourceMemoryType = sourceMemoryType;
+        m_targetMemoryType = targetMemoryType;
     }
 
     public override NodeState evaluate(Blackboard blackboard)
     {
-        if (m_sourceObjects == null || m_targetObjects == null)
+        AIRememberedItem newTarget = null;
+        float dist = float.MaxValue;
+        float newDist;
+
+        // Loop through each remembered memory type.
+        // Skip over any memories that aren't from active objects.
+        foreach (AIRememberedItem source in blackboard.rememberedItems[(int)m_sourceMemoryType])
+        {
+            if (source.trackingRealObject)
+            {
+                foreach (AIRememberedItem target in blackboard.rememberedItems[(int)m_targetMemoryType])
+                {
+                    if (target.trackingRealObject)
+                    {
+                        if (source != target)
+                        {
+                            newDist = Vector3.Distance(source.position, target.position);
+                            if (newDist < dist)
+                            {
+                                dist = newDist;
+                                newTarget = target;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        if (newTarget == null)
         {
             return NodeState.FAILURE;
         }
 
-        float currDist = float.MaxValue;
-        GameObject currTarget = null;
-        foreach (GameObject source in m_sourceObjects)
-        {
-            foreach (GameObject target in m_targetObjects)
-            {
-                float newDist = Vector3.Distance(source.transform.position, target.transform.position);
-                if (newDist < currDist)
-                {
-                    currDist = newDist;
-                    currTarget = target;
-                }
-            }
-        }
-
-        blackboard.target = currTarget;
+        blackboard.target = newTarget;
         return NodeState.SUCCESS;
     }
 

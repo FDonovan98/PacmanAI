@@ -14,7 +14,7 @@ using UnityEngine;
 public class AIRememberedItem
 {
     public float timeUpdated;
-    MemoryType memoryType;
+    public MemoryType memoryType;
     Blackboard blackboard;
     public bool trackingRealObject;
     public Vector3 position;
@@ -41,6 +41,7 @@ public class AIRememberedItem
 
 public enum MemoryType
 {
+    Player,
     Pill,
-    Player
+    PowerPill
 }

@@ -21,7 +21,6 @@ public abstract class BtController : MonoBehaviour
     protected Blackboard m_blackboard;
     private SphereCollider sphereCollider;
     private List<GameObject> itemsInRange = new List<GameObject>();
-    public GameObject itemPool;
     public float detectionRange = 7.0f;
     public float rememberedObjectDisplacementTolerance = 1.0f;
     // Remembered player count (index 1) needs to be at least 2 for directional analysis to work.
@@ -41,7 +40,7 @@ public abstract class BtController : MonoBehaviour
         {
             // Initialised with int array. 
             // Each element corresponds to it's Enum MemoryType element.
-            m_blackboard = new Blackboard(gameObject, itemPool, rememberedItemCounts, rememberedObjectDisplacementTolerance);
+            m_blackboard = new Blackboard(gameObject, rememberedItemCounts, rememberedObjectDisplacementTolerance);
             m_root = createTree();
         }
 
