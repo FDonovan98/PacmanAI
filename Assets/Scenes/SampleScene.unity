@@ -3379,6 +3379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPool: {fileID: 399938685}
+  detectionRange: 7
+  rememberedObjectDisplacementTolerance: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4465,6 +4467,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPool: {fileID: 399938685}
+  detectionRange: 7
+  rememberedObjectDisplacementTolerance: 1
 --- !u!4 &934815128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7468413358560393593, guid: 9d43e8781f32dd04c85ad109a4df270e,
@@ -11238,6 +11242,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPool: {fileID: 399938685}
+  detectionRange: 7
+  rememberedObjectDisplacementTolerance: 1
+--- !u!135 &2118311779
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118311777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &575204773561528525
 PrefabInstance:
   m_ObjectHideFlags: 0

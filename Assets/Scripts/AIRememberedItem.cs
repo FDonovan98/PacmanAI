@@ -18,22 +18,23 @@ public class AIRememberedItem : MonoBehaviour
     Blackboard blackboard;
     Vector3 pos;
 
+    public void Initialise(Blackboard blackboard, MemoryType memoryType)
+    {
+        Initialise(blackboard, memoryType, new Vector3(1000.0f, 1000.0f));
+    }
     public void Initialise(Blackboard blackboard, MemoryType memoryType, Vector3 pos)
     {
         this.memoryType = memoryType;
         this.blackboard = blackboard;
         UpdateLocation(pos);
+        this.tag = "RememberedItem";
     }
 
     public void UpdateLocation(Vector3 pos)
     {
         this.pos = pos;
-        // Uses Vector3.Distance as bool checks are inaccurate w/ v. large values.
-        if (Vector3.Distance(pos, Vector3.positiveInfinity) < 1)
-        {
-            this.transform.position = pos;
-            timeUpdated = Time.timeSinceLevelLoad;
-        }
+        this.transform.position = pos;
+        timeUpdated = Time.timeSinceLevelLoad;
     }
 }
 

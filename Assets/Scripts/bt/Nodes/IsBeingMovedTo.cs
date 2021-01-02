@@ -17,7 +17,6 @@ public class IsBeingMovedTo : BtNode
         float angle = Vector3.Dot(direction2D, targetView2D);
         angle = Mathf.Acos(angle);
         angle *= Mathf.Rad2Deg;
-        Debug.Log(angle);
 
         if (angle <= 270 && angle >= 90)
         {
