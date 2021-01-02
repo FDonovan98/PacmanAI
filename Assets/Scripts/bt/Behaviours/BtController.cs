@@ -135,5 +135,13 @@ public abstract class BtController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        foreach (AIRememberedItem[] array in m_blackboard.rememberedItems)
+        {
+            foreach (AIRememberedItem element in array)
+            {
+                Gizmos.DrawCube(element.position, new Vector3(1.0f, 1.0f, 1.0f));
+            }
+        }
     }
 }
