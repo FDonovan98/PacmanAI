@@ -14,13 +14,18 @@ using UnityEngine;
 
 public class Blackboard
 {
+    float rememberedObjectDisplacementTolerance;
     public GameObject owner;
     public GameObject target;
-    GameObject[][] rememberedItems;
+    public GameObject[][] rememberedItems
+    {
+        get;
+    }
 
-    public Blackboard(GameObject owner, GameObject itemPool, int[] maxRememberedItems)
+    public Blackboard(GameObject owner, GameObject itemPool, int[] maxRememberedItems, float rememberedObjectDisplacementTolerance)
     {
         this.owner = owner;
+        this.rememberedObjectDisplacementTolerance = rememberedObjectDisplacementTolerance;
 
         string[] enumNames = Enum.GetNames(typeof(MemoryType));
         int numOfMemTypes = Enum.GetNames(typeof(MemoryType)).Length;
@@ -64,31 +69,28 @@ public class Blackboard
         GameObject.Destroy(spawnObject);
     }
 
-    // Replaces the furthest away (from the owner) remembered item with the new itemToAdd.
-    // If no remembered item is further than the itemToAdd the item is not added.
-    // If a remembered item is null (so has not yet been set) then it is automatically replaced.
+    // Replaces the oldest remembered item with the new itemToAdd.
     public void UpdateRememberedItems(MemoryType memoryType, GameObject itemToAdd)
     {
-        float dist = Vector3.Distance(owner.transform.position, itemToAdd.transform.position);
+        float oldestTime = float.MaxValue;
 
         int i = 0;
         int replacementIndex = int.MaxValue;
         foreach (GameObject element in rememberedItems[(int)memoryType])
         {
             // If the gameobject is already being remembered then it is not added.
-            // Uses a distance which would cause problems if multiple of the same object could be next to each other.
+            // Assumes any object close enough is the same object which would cause problems if multiple of the same MemoryType of object could be next to each other.
             // However for this application that can't happen so this implementation is suitable.
-            if (Vector3.Distance(itemToAdd.transform.position, element.transform.position) < 1.0f)
+            if (Vector3.Distance(itemToAdd.transform.position, element.transform.position) < rememberedObjectDisplacementTolerance)
             {
                 replacementIndex = int.MaxValue;
                 break;
             }
 
-            float newDist = Vector3.Distance(element.transform.position, owner.transform.position);
-
-            if (newDist > dist)
+            float newTime = element.GetComponent<AIRememberedItem>().timeUpdated;
+            if (newTime < oldestTime)
             {
-                dist = newDist;
+                oldestTime = newTime;
                 replacementIndex = i;
             }
 

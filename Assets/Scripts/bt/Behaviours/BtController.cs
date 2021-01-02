@@ -18,12 +18,18 @@ using UnityEngine;
 public abstract class BtController : MonoBehaviour
 {
     private BtNode m_root;
-    private Blackboard m_blackboard;
+    protected Blackboard m_blackboard;
     private SphereCollider sphereCollider;
     private List<GameObject> itemsInRange = new List<GameObject>();
     public GameObject itemPool;
     public float detectionRange = 7.0f;
     public float rememberedObjectDisplacementTolerance = 1.0f;
+    // Remembered player count (index 1) needs to be at least 2 for directional analysis to work.
+    public int[] rememberedItemCounts = new int[]
+    {
+        5,
+        2
+    };
 
     // method to create the tree, sorry - no GUI for this we need to build it by hand
     abstract protected BtNode createTree();
@@ -33,14 +39,10 @@ public abstract class BtController : MonoBehaviour
     {
         if (m_root == null)
         {
-            m_root = createTree();
             // Initialised with int array. 
             // Each element corresponds to it's Enum MemoryType element.
-            m_blackboard = new Blackboard(gameObject, itemPool, new int[]
-            {
-                5,
-                1
-            });
+            m_blackboard = new Blackboard(gameObject, itemPool, rememberedItemCounts, rememberedObjectDisplacementTolerance);
+            m_root = createTree();
         }
 
         sphereCollider = GetComponent<SphereCollider>();
@@ -120,15 +122,15 @@ public abstract class BtController : MonoBehaviour
     {
         if (checkIfPowered)
         {
-            return new Sequence(new TargetPlayer("Player"), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
+            return new Sequence(new TargetPlayer(MemoryType.Player), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
         }
 
-        return new Sequence(new TargetPlayer("Player"), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
+        return new Sequence(new TargetPlayer(MemoryType.Player), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
     }
 
     virtual protected BtNode MoveToPlayer(float huntRange)
     {
-        return new Sequence(new IsClose(huntRange, "Player"), new TargetPlayer("Player"), new TowardsTarget());
+        return new Sequence(new IsClose(huntRange, MemoryType.Player), new TargetPlayer(MemoryType.Player), new TowardsTarget());
     }
 
     private void OnDrawGizmosSelected()

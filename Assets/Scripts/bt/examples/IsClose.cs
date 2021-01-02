@@ -1,69 +1,60 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// Original Author: Joseph Walton-Rivers
+// Collaborators: Harry Donovan
+// References: 
+// Dependencies: Assets\Scripts\bt\BtNode.cs
+// Description: Checks if a remembered object is within a given range. If no memoryType is given then the blackboard target is used.
+
 using UnityEngine;
 
 public class IsClose : BtNode
 {
     private float m_distanceLimit = 10;
 
-    // Vars for if test target is passed in.
-    private GameObject[] m_possibleTargets = null;
+    bool useBlackboardTarget;
+    private MemoryType memoryType;
     private GameObject m_testTarget = null;
 
+    // If no target is passed it is assumed to use the blackboards target.
     public IsClose(float distanceLimit)
     {
         m_distanceLimit = distanceLimit;
+        useBlackboardTarget = true;
     }
 
-    // If distanceFromSelf is false distance is taken from the blackboard target to the test target.
-    public IsClose(float distanceLimit, string targetTag)
+    public IsClose(float distanceLimit, MemoryType memoryType)
     {
         m_distanceLimit = distanceLimit;
-        GameObject[] tags = GameObject.FindGameObjectsWithTag(targetTag);
-
-        if (tags.Length == 0)
-        {
-            return;
-        }
-
-        m_possibleTargets = tags;
+        this.memoryType = memoryType;
+        useBlackboardTarget = false;
     }
 
     public override NodeState evaluate(Blackboard blackboard)
     {
-        float distance;
+        float distance = float.MaxValue;
 
-        if (m_testTarget == null)
+        if (useBlackboardTarget)
         {
-            if (m_possibleTargets != null)
+            if (blackboard.target == null)
             {
-                float currDist = float.MaxValue;
-
-                foreach (GameObject element in m_possibleTargets)
-                {
-                    float newDist = Vector3.Distance(blackboard.owner.transform.position, element.transform.position);
-                    if (newDist < currDist)
-                    {
-                        currDist = newDist;
-                        m_testTarget = element;
-                    }
-                }
-
-                distance = currDist;
+                return NodeState.FAILURE;
             }
-            else
-            {
-                if (blackboard.target == null)
-                {
-                    return NodeState.FAILURE;
-                }
 
-                distance = Vector3.Distance(blackboard.owner.transform.position, blackboard.target.transform.position);
-            }
+            distance = Vector3.Distance(blackboard.owner.transform.position, blackboard.target.transform.position);
         }
         else
         {
-            distance = Vector3.Distance(blackboard.owner.transform.position, m_testTarget.transform.position);
+            float newDist;
+            foreach (GameObject element in blackboard.rememberedItems[(int)memoryType])
+            {
+                if (element.GetComponent<AIRememberedItem>().trackingRealObject)
+                {
+                    newDist = Vector3.Distance(element.transform.position, blackboard.owner.transform.position);
+                    if (newDist < distance)
+                    {
+                        distance = newDist;
+                    }
+                }
+            }
         }
 
         if (distance < m_distanceLimit)

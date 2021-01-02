@@ -7,20 +7,22 @@
 // File Source: Assets\Scripts\AIRememberedItem.cs
 // Dependencies: Assets\Scripts\bt\Blackboard.cs
 // Description: Script used by ai agents to mark and track gameobjects as remembered objects. Designed to be added to a blank GameObject which is then used as the remembered object.
+// Should likely be changed to contain a position and then just use an array rather then actual game objects.
 
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
 public class AIRememberedItem : MonoBehaviour
 {
-    float timeUpdated;
+    public float timeUpdated;
     MemoryType memoryType;
     Blackboard blackboard;
-    Vector3 pos;
+    public bool trackingRealObject;
 
     public void Initialise(Blackboard blackboard, MemoryType memoryType)
     {
         Initialise(blackboard, memoryType, new Vector3(1000.0f, 1000.0f));
+        trackingRealObject = false;
     }
     public void Initialise(Blackboard blackboard, MemoryType memoryType, Vector3 pos)
     {
@@ -32,9 +34,9 @@ public class AIRememberedItem : MonoBehaviour
 
     public void UpdateLocation(Vector3 pos)
     {
-        this.pos = pos;
         this.transform.position = pos;
         timeUpdated = Time.timeSinceLevelLoad;
+        trackingRealObject = true;
     }
 }
 
