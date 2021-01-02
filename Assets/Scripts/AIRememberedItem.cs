@@ -19,6 +19,18 @@ public class AIRememberedItem
     public bool trackingRealObject;
     public Vector3 position;
 
+    public AIRememberedItem(Blackboard blackboard, MemoryType memoryType) : this(blackboard, memoryType, new Vector3())
+    {
+        trackingRealObject = false;
+    }
+
+    public AIRememberedItem(Blackboard blackboard, MemoryType memoryType, Vector3 pos)
+    {
+        this.memoryType = memoryType;
+        this.blackboard = blackboard;
+        UpdateLocation(pos);
+    }
+
     public void Initialise(Blackboard blackboard, MemoryType memoryType)
     {
         Initialise(blackboard, memoryType, new Vector3(1000.0f, 1000.0f));

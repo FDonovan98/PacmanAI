@@ -44,25 +44,11 @@ public class Blackboard
         for (int i = 0; i < loopLength; i++)
         {
             rememberedItems[i] = new AIRememberedItem[maxRememberedItems[i]];
-            foreach (AIRememberedItem element in rememberedItems[i])
+            for (int j = 0; j < maxRememberedItems[i]; j++)
             {
-                element.Initialise(this, (MemoryType)i);
+                rememberedItems[i][j] = new AIRememberedItem(this, (MemoryType)i);
             }
         }
-
-        // for (int i = 0; i < loopLength; i++)
-        // {
-        //     typeSubPools[i] = GameObject.Instantiate(spawnObject, Vector3.zero, new Quaternion(), agentSubPool.transform);
-        //     typeSubPools[i].name = enumNames[i] + "Pool";
-
-        //     for (int j = 0; j < rememberedItems[i].Length; j++)
-        //     {
-        //         rememberedItems[i][j] = GameObject.Instantiate(spawnObject, Vector3.zero, new Quaternion(), typeSubPools[i].transform);
-        //         rememberedItems[i][j].name = "RememberedItem" + j;
-        //         AIRememberedItem aIRememberedItem = rememberedItems[i][j].AddComponent<AIRememberedItem>();
-        //         aIRememberedItem.Initialise(this, (MemoryType)i);
-        //     }
-        // }
     }
 
     // Replaces the oldest remembered item with the new itemToAdd.

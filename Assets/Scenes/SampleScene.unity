@@ -3348,7 +3348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f766c5aaf53744687354feefeae9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPool: {fileID: 0}
   detectionRange: 7
   rememberedObjectDisplacementTolerance: 1
   rememberedItemCounts: 
@@ -4450,7 +4449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb07d46c14e3ee49a0d2536524cf7c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPool: {fileID: 0}
   detectionRange: 7
   rememberedObjectDisplacementTolerance: 1
   rememberedItemCounts: 
@@ -11226,7 +11224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47641aa7db6b6148b2dc8b9d14cb331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPool: {fileID: 0}
   detectionRange: 20
   rememberedObjectDisplacementTolerance: 1
   rememberedItemCounts: 020000000500000004000000
