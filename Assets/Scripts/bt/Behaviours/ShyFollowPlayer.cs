@@ -10,7 +10,7 @@ public class ShyFollowPlayer : BtController
 
         player.transform.position = new Vector3(playerPos.x, 0.0f, playerPos.z);
 
-        // m_blackboard.UpdateRememberedItems(MemoryType.Player, player);
+        m_blackboard.UpdateRememberedItems(MemoryType.Player, player);
 
         player.transform.position = playerPos;
 
