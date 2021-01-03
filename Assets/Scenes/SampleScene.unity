@@ -2777,7 +2777,7 @@ PrefabInstance:
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 844f842ed20f2614da2e53867a98692f, type: 3}
@@ -4451,7 +4451,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 7
   rememberedObjectDisplacementTolerance: 1
-  rememberedItemCounts: 
+  rememberedItemCounts: 020000000a00000004000000
+--- !u!135 &925682411
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925682403}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &934815128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7468413358560393593, guid: 9d43e8781f32dd04c85ad109a4df270e,
@@ -11310,7 +11323,7 @@ PrefabInstance:
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2269452321919953869, guid: 844f842ed20f2614da2e53867a98692f, type: 3}

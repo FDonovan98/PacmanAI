@@ -28,8 +28,7 @@ public abstract class BtController : MonoBehaviour
     [NamedArrayAttribute(new string[] {"Player", "Pill", "PowerPill"})]
     public int[] rememberedItemCounts = new int[]
     {
-        5,
-        2
+        2, 10, 4
     };
 
     // method to create the tree, sorry - no GUI for this we need to build it by hand
