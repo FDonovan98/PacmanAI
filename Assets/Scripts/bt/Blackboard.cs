@@ -71,7 +71,7 @@ public class Blackboard
             }
 
             float newTime = element.timeUpdated;
-            if (newTime < oldestTime)
+            if (element != target && newTime < oldestTime)
             {
                 oldestTime = newTime;
                 replacementIndex = i;
