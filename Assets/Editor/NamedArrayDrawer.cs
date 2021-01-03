@@ -16,7 +16,8 @@ using UnityEditor;
             int pos = int.Parse(property.propertyPath.Split('[', ']')[1]);
             // Edited as casting with (NamedArrayAttribute) didn't work.
             NamedArrayAttribute namedArrayAttribute = attribute as NamedArrayAttribute;
-            EditorGUI.IntField(rect, namedArrayAttribute.names[pos], property.intValue);
+            // Edited to stop property being instantly reset to 0.
+            property.intValue = EditorGUI.IntField(rect, namedArrayAttribute.names[pos], property.intValue);
         } catch {
             EditorGUI.ObjectField(rect, property, label);
         }

@@ -139,29 +139,35 @@ public abstract class BtController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
         int i = 0;
-        foreach (AIRememberedItem[] array in m_blackboard.rememberedItems)
+        if (m_blackboard != null && m_blackboard.rememberedItems.Length > 0)
         {
-            switch (i)
+            foreach (AIRememberedItem[] array in m_blackboard.rememberedItems)
             {
-                case (int)MemoryType.Player:
-                    Gizmos.color = Color.red;
-                    break;
-                case (int)MemoryType.Pill:
-                    Gizmos.color = Color.green;
-                    break;
-                case (int)MemoryType.PowerPill:
-                    Gizmos.color = Color.yellow;
-                    break;
-                default:
-                    break;
-            }
+                switch (i)
+                {
+                    case (int)MemoryType.Player:
+                        Gizmos.color = Color.red;
+                        break;
+                    case (int)MemoryType.Pill:
+                        Gizmos.color = Color.green;
+                        break;
+                    case (int)MemoryType.PowerPill:
+                        Gizmos.color = Color.yellow;
+                        break;
+                    default:
+                        break;
+                }
 
-            foreach (AIRememberedItem element in array)
-            {
-                Gizmos.DrawCube(element.position, new Vector3(1.0f, 1.0f, 1.0f));
-            }
+                if (array.Length > 0)
+                {
+                    foreach (AIRememberedItem element in array)
+                    {
+                        Gizmos.DrawCube(element.position, new Vector3(1.0f, 1.0f, 1.0f));
+                    }
+                }
 
-            i++;
+                i++;
+            }
         }
     }
 }
