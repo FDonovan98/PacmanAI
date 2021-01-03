@@ -3,6 +3,7 @@
 [RequireComponent(typeof(AgentDetection))]
 public class ShyFollowPlayer : BtController
 {
+    GameObject m_player = null;
     // Sets up the behaviour tree and provides an initial location for the player.
     protected override BtNode createTree()
     {
@@ -21,13 +22,26 @@ public class ShyFollowPlayer : BtController
         m_blackboard.UpdateRememberedItems(MemoryType.Player, player);
 
         player.transform.position = playerPos;
+
+        if (m_player != null)
+        {
+            OuijaBoard.ItemFound(MemoryType.Player, m_player);
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            
+            m_player = other.gameObject;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            m_player = null;
         }
     }
 }

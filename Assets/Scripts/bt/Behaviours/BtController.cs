@@ -32,10 +32,12 @@ public abstract class BtController : MonoBehaviour
 
         InitialiseKnownItems();
 
-        if (ouijaBoard = null)
-        {
-            ouijaBoard = GameObject.Find("OuijaBoard").GetComponent<OuijaBoard>();
-        }
+        // if (ouijaBoard = null)
+        // {
+        //     ouijaBoard = GameObject.Find("OuijaBoard").GetComponent<OuijaBoard>();
+        // }
+
+        OuijaBoard.itemFoundDelegate += m_blackboard.UpdateRememberedItems;
     }
 
     // Designed to be overridden in inherited classes if needed.
