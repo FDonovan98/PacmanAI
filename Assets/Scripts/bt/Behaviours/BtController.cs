@@ -16,6 +16,7 @@ public abstract class BtController : MonoBehaviour
 {
     private BtNode m_root;
     public Blackboard m_blackboard;
+    public float playerAttackRange;
 
     // method to create the tree, sorry - no GUI for this we need to build it by hand
     abstract protected BtNode createTree();
@@ -68,6 +69,10 @@ public abstract class BtController : MonoBehaviour
     }
     virtual protected BtNode MoveToItem(MemoryType memoryType, float range)
     {
+        if (range < 0.1f)
+        {
+            range = float.MaxValue;
+        }
         return new Sequence(new TargetNewestItem(memoryType, range), new TowardsTarget());
     }
 }

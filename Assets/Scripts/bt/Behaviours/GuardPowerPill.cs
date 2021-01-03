@@ -11,7 +11,7 @@ public class GuardPowerPill : BtController
 
         BtNode guardPower = new Sequence(new FindClosestPair(MemoryType.Player, MemoryType.PowerPill), new TowardsTarget());
 
-        return new Selector(MoveToPlayer(3.0f), guardPower, wonderToPill);
+        return new Selector(MoveToItem(MemoryType.Player, playerAttackRange), guardPower, wonderToPill);
     }
 
     protected override void InitialiseKnownItems()

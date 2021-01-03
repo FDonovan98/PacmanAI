@@ -5,7 +5,7 @@ public class ShyFollowPlayer : BtController
     // Sets up the behaviour tree and provides an initial location for the player.
     protected override BtNode createTree()
     {
-        return new Selector(AwayFromPlayer(7.0f, false), MoveToPlayer(100.0f));
+        return new Selector(AwayFromPlayer(7.0f, false), MoveToItem(MemoryType.Player, playerAttackRange));
     }
 
     protected override void InitialiseKnownItems()
