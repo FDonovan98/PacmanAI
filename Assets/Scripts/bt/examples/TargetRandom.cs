@@ -103,7 +103,16 @@ public class TargetRandom : BtNode
 
             if (!setTarget)
             {
-                blackboard.target = possibleItems[0];
+                if (possibleItems[0] != blackboard.target)
+                {
+                    blackboard.target = possibleItems[0];
+                }
+                else if (possibleItems.Count > 1)
+                {
+                   
+                    blackboard.target = possibleItems[1];
+                    
+                }
             }
         }
         m_nodeState = NodeState.SUCCESS;
