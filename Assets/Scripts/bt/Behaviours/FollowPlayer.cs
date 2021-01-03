@@ -4,7 +4,7 @@ public class FollowPlayer : BtController
 {
     protected override BtNode createTree()
     {
-        return MoveToPlayer(100.0f);
+        return MoveToItem(MemoryType.Player);
     }
 
     protected override void Update()

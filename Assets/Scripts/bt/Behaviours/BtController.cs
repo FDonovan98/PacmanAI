@@ -61,4 +61,13 @@ public abstract class BtController : MonoBehaviour
     {
         return new Sequence(new IsClose(huntRange, MemoryType.Player), new TargetPlayer(MemoryType.Player), new TowardsTarget());
     }
+    
+    virtual protected BtNode MoveToItem(MemoryType memoryType)
+    {
+        return new Sequence(new TargetNewestItem(memoryType), new TowardsTarget());
+    }
+    virtual protected BtNode MoveToItem(MemoryType memoryType, float range)
+    {
+        return new Sequence(new TargetNewestItem(memoryType, range), new TowardsTarget());
+    }
 }
