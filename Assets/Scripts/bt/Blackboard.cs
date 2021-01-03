@@ -17,6 +17,7 @@ public class Blackboard
     float rememberedObjectDisplacementTolerance;
     public GameObject owner;
     public AIRememberedItem target;
+
     public AIRememberedItem[][] rememberedItems
     {
         get;
@@ -65,6 +66,7 @@ public class Blackboard
             // However for this application that can't happen so this implementation is suitable.
             if (Vector3.Distance(itemToAdd.transform.position, element.position) < rememberedObjectDisplacementTolerance)
             {
+                Debug.Log("Knonw");
                 replacementIndex = int.MaxValue;
                 break;
             }

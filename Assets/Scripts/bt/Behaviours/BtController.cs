@@ -23,7 +23,9 @@ public abstract class BtController : MonoBehaviour
     private List<GameObject> itemsInRange = new List<GameObject>();
     public float detectionRange = 7.0f;
     public float rememberedObjectDisplacementTolerance = 1.0f;
-    // Remembered player count (index 1) needs to be at least 2 for directional analysis to work.
+    // Remembered player count (index 0) needs to be at least 2 for directional analysis to work.
+    // See Assets\Editor\NamedArrayDrawer.cs for explanation of NamedArray attribute as it is NOT MY CODE.
+    [NamedArrayAttribute(new string[] {"Player", "Pill", "PowerPill"})]
     public int[] rememberedItemCounts = new int[]
     {
         5,
