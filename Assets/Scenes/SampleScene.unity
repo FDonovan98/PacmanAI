@@ -3348,9 +3348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f766c5aaf53744687354feefeae9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 7
-  rememberedObjectDisplacementTolerance: 1
-  rememberedItemCounts: 020000001e00000004000000
 --- !u!135 &682269308
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4334,7 +4331,7 @@ PrefabInstance:
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 844f842ed20f2614da2e53867a98692f, type: 3}
@@ -4449,9 +4446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb07d46c14e3ee49a0d2536524cf7c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 7
-  rememberedObjectDisplacementTolerance: 1
-  rememberedItemCounts: 020000001e00000004000000
 --- !u!135 &925682411
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11237,9 +11231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47641aa7db6b6148b2dc8b9d14cb331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 10
-  rememberedObjectDisplacementTolerance: 0.3
-  rememberedItemCounts: 020000001e0000000a000000
 --- !u!135 &2118311779
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11323,7 +11314,7 @@ PrefabInstance:
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2269452321919953869, guid: 844f842ed20f2614da2e53867a98692f, type: 3}

@@ -17,6 +17,14 @@ public class GuardPowerPill : BtController
     protected override void InitialiseKnownItems()
     {
         m_blackboard.UpdateRememberedItems(MemoryType.PowerPill, GameObject.FindGameObjectsWithTag("powerpill"));
-        m_blackboard.UpdateRememberedItems(MemoryType.Player, GameObject.FindGameObjectsWithTag("Player"));
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 playerPos = player.transform.position;
+
+        player.transform.position = new Vector3(playerPos.x, 0.0f, playerPos.z);
+
+        m_blackboard.UpdateRememberedItems(MemoryType.Player, player);
+
+        player.transform.position = playerPos;
     }
 }
