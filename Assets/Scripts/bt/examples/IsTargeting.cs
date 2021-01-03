@@ -20,7 +20,6 @@ public class IsTargeting : BtNode
 
         if (blackboard.target.memoryType == m_memoryType)
         {
-            Debug.Log("keeping pill selected");
             return NodeState.SUCCESS;
         }
         else
