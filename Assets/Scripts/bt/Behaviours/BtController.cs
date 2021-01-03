@@ -15,6 +15,7 @@ using UnityEngine;
 public abstract class BtController : MonoBehaviour
 {
     private BtNode m_root;
+    public OuijaBoard ouijaBoard = null;
     public Blackboard m_blackboard;
     public float playerAttackRange;
 
@@ -30,6 +31,11 @@ public abstract class BtController : MonoBehaviour
         }
 
         InitialiseKnownItems();
+
+        if (ouijaBoard = null)
+        {
+            ouijaBoard = GameObject.Find("OuijaBoard").GetComponent<OuijaBoard>();
+        }
     }
 
     // Designed to be overridden in inherited classes if needed.

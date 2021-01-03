@@ -43,7 +43,7 @@ public class AgentDetection : MonoBehaviour
         }
     }
 
-        private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         itemsInRange.Add(other.gameObject);
 
