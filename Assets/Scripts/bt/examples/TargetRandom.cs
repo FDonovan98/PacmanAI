@@ -48,6 +48,8 @@ public class TargetRandom : BtNode
                 i++;
             }
 
+            // sortedIndexList is used to store the sorted index positions of the target angles.
+            // List is sorted into ascending order.
             List<int> sortedIndexList = new List<int>();
             sortedIndexList.Add(0);
             bool sortedIntoList;
@@ -71,6 +73,8 @@ public class TargetRandom : BtNode
                 }
             }
 
+            // Weighted targetting is logarithmic, favouring items that have a smaller angle from the agents current facing.
+            // Max random range is 180 rather than 360 due to Vector3.Angle returning a non-directional angle.
             float rand = Random.Range(0.0f, 180.0f);
             Debug.Log("Rand = " + rand);
             rand = -34.66f * Mathf.Log(rand) + 180.0f;
@@ -81,6 +85,8 @@ public class TargetRandom : BtNode
                 Debug.Log(targetAngles[element]);
             }
 
+            // If no target is found within the bound formed by rand then the target is set to the first item in the possibleItems list.
+            bool setTarget = false;
             for (i = 0; i < sortedIndexList.Count; i++)
             {
                 if (rand < targetAngles[sortedIndexList[i]])
@@ -89,9 +95,15 @@ public class TargetRandom : BtNode
                     {
                         blackboard.target = possibleItems[sortedIndexList[i]];
                         Debug.Log("Targeted = " + targetAngles[sortedIndexList[i]]);
+                        setTarget = true;
                         break;
                     }
                 }
+            }
+
+            if (!setTarget)
+            {
+                blackboard.target = possibleItems[0];
             }
         }
         m_nodeState = NodeState.SUCCESS;
