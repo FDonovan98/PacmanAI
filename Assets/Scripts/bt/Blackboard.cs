@@ -52,6 +52,14 @@ public class Blackboard
         }
     }
 
+    public void UpdateRememberedItems(MemoryType memoryType, GameObject[] itemsToAdd)
+    {
+        foreach (GameObject element in itemsToAdd)
+        {
+            UpdateRememberedItems(memoryType, element);
+        }
+    }
+
     // Replaces the oldest remembered item with the new itemToAdd.
     public void UpdateRememberedItems(MemoryType memoryType, GameObject itemToAdd)
     {

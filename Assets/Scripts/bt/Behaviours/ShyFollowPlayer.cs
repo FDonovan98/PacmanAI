@@ -5,6 +5,11 @@ public class ShyFollowPlayer : BtController
     // Sets up the behaviour tree and provides an initial location for the player.
     protected override BtNode createTree()
     {
+        return new Selector(AwayFromPlayer(7.0f, false), MoveToPlayer(100.0f));
+    }
+
+    protected override void InitialiseKnownItems()
+    {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector3 playerPos = player.transform.position;
 
@@ -13,7 +18,5 @@ public class ShyFollowPlayer : BtController
         m_blackboard.UpdateRememberedItems(MemoryType.Player, player);
 
         player.transform.position = playerPos;
-
-        return new Selector(AwayFromPlayer(7.0f, false), MoveToPlayer(100.0f));
     }
 }

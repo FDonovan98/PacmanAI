@@ -1,4 +1,6 @@
-﻿public class GuardPowerPill : BtController
+﻿using UnityEngine;
+
+public class GuardPowerPill : BtController
 {
     protected override BtNode createTree()
     {
@@ -10,5 +12,11 @@
         BtNode guardPower = new Sequence(new FindClosestPair(MemoryType.Player, MemoryType.PowerPill), new TowardsTarget());
 
         return new Selector(MoveToPlayer(3.0f), guardPower, wonderToPill);
+    }
+
+    protected override void InitialiseKnownItems()
+    {
+        m_blackboard.UpdateRememberedItems(MemoryType.PowerPill, GameObject.FindGameObjectsWithTag("powerpill"));
+        m_blackboard.UpdateRememberedItems(MemoryType.Player, GameObject.FindGameObjectsWithTag("Player"));
     }
 }

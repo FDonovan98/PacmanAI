@@ -21,12 +21,20 @@ public abstract class BtController : MonoBehaviour
     abstract protected BtNode createTree();
 
     // Start is called before the first frame update
-    virtual protected void Start()
+    protected void Start()
     {
         if (m_root == null)
         {
             m_root = createTree();
         }
+
+        InitialiseKnownItems();
+    }
+
+    // Designed to be overridden in inherited classes if needed.
+    virtual protected void InitialiseKnownItems()
+    {
+
     }
 
     // Update is called once per frame
