@@ -28,7 +28,7 @@ public abstract class BtController : MonoBehaviour
     [NamedArrayAttribute(new string[] {"Player", "Pill", "PowerPill"})]
     public int[] rememberedItemCounts = new int[]
     {
-        2, 10, 4
+        2, 30, 4
     };
 
     // method to create the tree, sorry - no GUI for this we need to build it by hand
@@ -135,8 +135,10 @@ public abstract class BtController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        // Draw detection sphere
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
+        // Draw remembered items.
         int i = 0;
         if (m_blackboard != null && m_blackboard.rememberedItems.Length > 0)
         {
@@ -167,6 +169,13 @@ public abstract class BtController : MonoBehaviour
 
                 i++;
             }
+        }
+    
+        // Draw current target.
+        if (m_blackboard != null && m_blackboard.target != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(m_blackboard.target.position, 1.0f);
         }
     }
 }

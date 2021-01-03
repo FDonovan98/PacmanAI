@@ -3350,7 +3350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 7
   rememberedObjectDisplacementTolerance: 1
-  rememberedItemCounts: 
+  rememberedItemCounts: 020000001e00000004000000
 --- !u!135 &682269308
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4451,7 +4451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 7
   rememberedObjectDisplacementTolerance: 1
-  rememberedItemCounts: 020000000a00000004000000
+  rememberedItemCounts: 020000001e00000004000000
 --- !u!135 &925682411
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11239,7 +11239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 10
   rememberedObjectDisplacementTolerance: 0.3
-  rememberedItemCounts: 020000000a0000000a000000
+  rememberedItemCounts: 020000001e0000000a000000
 --- !u!135 &2118311779
 SphereCollider:
   m_ObjectHideFlags: 0
