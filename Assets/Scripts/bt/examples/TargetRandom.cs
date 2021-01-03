@@ -37,7 +37,7 @@ public class TargetRandom : BtNode
         {
             float[] targetAngles = new float[possibleItems.Count];
             int i = 0;
-            foreach (AIRememberedItem element in blackboard.rememberedItems[(int)m_memoryType)
+            foreach (AIRememberedItem element in blackboard.rememberedItems[(int)m_memoryType])
             {
                 Vector3 dir = (element.position - blackboard.owner.transform.position).normalized;
                 targetAngles[i] = Vector3.Angle(blackboard.owner.transform.forward, dir);
