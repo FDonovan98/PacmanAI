@@ -69,6 +69,12 @@ public class Blackboard
         int replacementIndex = int.MaxValue;
         foreach (AIRememberedItem element in rememberedItems[(int)memoryType])
         {
+            if (!element.trackingRealObject)
+            {
+                replacementIndex = i;
+                break;
+            }
+            
             // If the gameobject is already being remembered then it is not added.
             // Assumes any object close enough is the same object which would cause problems if multiple of the same MemoryType of object could be next to each other.
             // However for this application that can't happen so this implementation is suitable.
