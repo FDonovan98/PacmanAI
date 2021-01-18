@@ -54,21 +54,25 @@ public class AgentDetection : MonoBehaviour
     // Call local UpdateRememberedItems function dependant on other's tag.
     private void CheckTagsToUpdateItems(GameObject other)
     {
-        if (other.tag == "Player")
+        // Checks for null in case object has been picked up during Update() loop. 
+        if (other != null)
         {
-            UpdateRememberedItems(MemoryType.Player, other);
-            return;
-        }
+            if (other.tag == "Player")
+            {
+                UpdateRememberedItems(MemoryType.Player, other);
+                return;
+            }
 
-        if (other.tag == "pill")
-        {
-            UpdateRememberedItems(MemoryType.Pill, other);
-            return;
-        }
+            if (other.tag == "pill")
+            {
+                UpdateRememberedItems(MemoryType.Pill, other);
+                return;
+            }
 
-        if (other.tag == "powerpill")
-        {
-            UpdateRememberedItems(MemoryType.PowerPill, other);
+            if (other.tag == "powerpill")
+            {
+                UpdateRememberedItems(MemoryType.PowerPill, other);
+            }
         }
     }
 
