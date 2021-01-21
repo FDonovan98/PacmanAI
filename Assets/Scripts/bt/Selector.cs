@@ -41,12 +41,12 @@ public class Selector : BtNode
         }
     }
 
-    public override NodeState evaluate(Blackboard board) {
-        return evaluateStep(board);
+    public override NodeState Evaluate(Blackboard board) {
+        return EvaluateStep(board);
     }
 
     // JWR - broken experiment - ignore
-    public NodeState evaluateCache(Blackboard board)
+    public NodeState EvaluateCache(Blackboard board)
     {
         if (m_nodeState != NodeState.RUNNING) {
             return m_nodeState;
@@ -55,7 +55,7 @@ public class Selector : BtNode
         while (runningNode < m_nodes.Count)
         {
             BtNode node = m_nodes[runningNode];
-            NodeState nodeStatus = node.evaluate(board);
+            NodeState nodeStatus = node.Evaluate(board);
 
             // all must be success
             if (nodeStatus == NodeState.FAILURE)
@@ -80,11 +80,11 @@ public class Selector : BtNode
         return m_nodeState;
     }
 
-    public NodeState evaluateStep(Blackboard blackboard)
+    public NodeState EvaluateStep(Blackboard blackboard)
     {
         foreach (BtNode node in m_nodes)
         {
-            switch (node.evaluate(blackboard))
+            switch (node.Evaluate(blackboard))
             {
                 case NodeState.SUCCESS:
                     m_nodeState = NodeState.SUCCESS;

@@ -13,12 +13,12 @@ public class TargetRandom : BtNode
         m_weightedRandom = weightedRandom;
     }
 
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
         List<AIRememberedItem> possibleItems = new List<AIRememberedItem>();
         foreach (AIRememberedItem element in blackboard.rememberedItems[(int)m_memoryType])
         {
-            if (element.trackingRealObject)
+            if (element.activeMemory)
             {
                 possibleItems.Add(element);
             }

@@ -7,28 +7,30 @@
 
 using UnityEngine;
 
-public class TargetPlayer : BtNode
+public class TargetClose : BtNode
 {
     private MemoryType m_memoryType;
+    bool m_requireActiveMemory;
 
-    public TargetPlayer(MemoryType memoryType)
+    public TargetClose(MemoryType memoryType, bool requireActiveMemory = true)
     {
-        this.m_memoryType = memoryType;
+        m_memoryType = memoryType;
+        m_requireActiveMemory = requireActiveMemory;
     }
 
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
         AIRememberedItem closest = null;
         float closestDistance = float.MaxValue;
 
-        foreach (AIRememberedItem gObject in blackboard.rememberedItems[(int)m_memoryType])
+        foreach (AIRememberedItem item in blackboard.rememberedItems[(int)m_memoryType])
         {
-            if (gObject.trackingRealObject)
+            if (!(m_requireActiveMemory && !item.activeMemory))
             {
-                float distance = Vector3.Distance(blackboard.owner.transform.position, gObject.position);
+                float distance = Vector3.Distance(blackboard.owner.transform.position, item.position);
                 if (distance < closestDistance)
                 {
-                    closest = gObject;
+                    closest = item;
                     closestDistance = distance;
                 }
             }
@@ -44,6 +46,6 @@ public class TargetPlayer : BtNode
 
     public override string getName()
     {
-        return "TargetPlayer";
+        return "TargetClose";
     }
 }

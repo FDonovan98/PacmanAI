@@ -48,6 +48,6 @@ public abstract class BtNode
         return new List<BtNode>();
     }
 
-    public abstract NodeState evaluate(Blackboard blackboard);
+    public abstract NodeState Evaluate(Blackboard blackboard);
     public abstract string getName();
 }

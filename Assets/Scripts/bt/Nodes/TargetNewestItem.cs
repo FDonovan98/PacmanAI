@@ -11,14 +11,14 @@ public class TargetNewestItem : BtNode
         m_range = range;
     }
 
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
         AIRememberedItem newest = null;
         float newestTime = float.MinValue;
 
         foreach (AIRememberedItem element in blackboard.rememberedItems[(int)m_memoryType])
         {
-            if (element.trackingRealObject)
+            if (element.activeMemory)
             {
                 float distance = Vector3.Distance(blackboard.owner.transform.position, element.position);
                 if (distance < m_range && element.timeUpdated > newestTime)

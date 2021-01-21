@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IsBeingMovedTo : BtNode
 {
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
         if (blackboard.target == null)
         {
@@ -19,7 +19,7 @@ public class IsBeingMovedTo : BtNode
         }
 
         // // If either of the two latest player locations aren't tracking a real object then return fail.
-        // if (!blackboard.rememberedItems[(int)MemoryType.Player][0].GetComponent<AIRememberedItem>().trackingRealObject | !blackboard.rememberedItems[(int)MemoryType.Player][1].GetComponent<AIRememberedItem>().trackingRealObject)
+        // if (!blackboard.rememberedItems[(int)MemoryType.Player][0].GetComponent<AIRememberedItem>().activeMemory | !blackboard.rememberedItems[(int)MemoryType.Player][1].GetComponent<AIRememberedItem>().activeMemory)
         // {
         //     return NodeState.FAILURE;
         // }
@@ -37,7 +37,7 @@ public class IsBeingMovedTo : BtNode
 
         foreach (AIRememberedItem element in blackboard.rememberedItems[(int)MemoryType.Player])
         {
-            if (element.trackingRealObject)
+            if (element.activeMemory)
             {
                 if (element.timeUpdated > newestTime)
                 {

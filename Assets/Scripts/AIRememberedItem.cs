@@ -16,12 +16,12 @@ public class AIRememberedItem
     public float timeUpdated;
     public MemoryType memoryType;
     Blackboard blackboard;
-    public bool trackingRealObject;
+    public bool activeMemory;
     public Vector3 position;
 
     public AIRememberedItem(Blackboard blackboard, MemoryType memoryType) : this(blackboard, memoryType, new Vector3())
     {
-        trackingRealObject = false;
+        activeMemory = false;
     }
 
     public AIRememberedItem(Blackboard blackboard, MemoryType memoryType, Vector3 pos)
@@ -35,7 +35,7 @@ public class AIRememberedItem
     {
         this.position = pos;
         timeUpdated = Time.timeSinceLevelLoad;
-        trackingRealObject = true;
+        activeMemory = true;
     }
 }
 

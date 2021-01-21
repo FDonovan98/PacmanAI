@@ -18,13 +18,15 @@ public abstract class BtController : MonoBehaviour
     public OuijaBoard ouijaBoard = null;
     public Blackboard m_blackboard;
     public float playerAttackRange;
-
+    protected float m_minApproachRange;
     // method to create the tree, sorry - no GUI for this we need to build it by hand
     abstract protected BtNode createTree();
 
     // Start is called before the first frame update
     protected void Start()
     {
+        m_minApproachRange = GetComponent<CapsuleCollider>().bounds.extents.x * 1.5f;
+
         if (m_root == null)
         {
             m_root = createTree();
@@ -49,7 +51,7 @@ public abstract class BtController : MonoBehaviour
     // Update is called once per frame
     virtual protected void Update()
     {
-        NodeState result = m_root.evaluate(m_blackboard);
+        NodeState result = m_root.Evaluate(m_blackboard);
         if (result != NodeState.RUNNING)
         {
             m_root.reset();
@@ -60,27 +62,23 @@ public abstract class BtController : MonoBehaviour
     {
         if (checkIfPowered)
         {
-            return new Sequence(new TargetPlayer(MemoryType.Player), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
+            return new Sequence(new TargetClose(MemoryType.Player), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
         }
 
-        return new Sequence(new TargetPlayer(MemoryType.Player), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
+        return new Sequence(new TargetClose(MemoryType.Player), new IsBeingMovedTo(), new AwayFromTarget(fleeDistance));
     }
 
     virtual protected BtNode MoveToPlayer(float huntRange)
     {
-        return new Sequence(new IsClose(huntRange, MemoryType.Player), new TargetPlayer(MemoryType.Player), new TowardsTarget());
+        return new Sequence(new HasActiveMemoryInRange(MemoryType.Player, playerAttackRange), new TargetClose(MemoryType.Player), new TowardsTarget(m_minApproachRange));
     }
     
     virtual protected BtNode MoveToItem(MemoryType memoryType)
     {
-        return new Sequence(new TargetNewestItem(memoryType), new TowardsTarget());
+        return new Sequence(new TargetNewestItem(memoryType), new TowardsTarget(m_minApproachRange));
     }
     virtual protected BtNode MoveToItem(MemoryType memoryType, float range)
     {
-        if (range < 0.1f)
-        {
-            range = float.MaxValue;
-        }
-        return new Sequence(new TargetNewestItem(memoryType, range), new TowardsTarget());
+        return new Sequence(new Inverter(new IsClose(0.1f, memoryType)), new TargetNewestItem(memoryType, range), new TowardsTarget(m_minApproachRange));
     }
 }

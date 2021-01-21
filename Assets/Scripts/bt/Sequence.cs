@@ -35,11 +35,11 @@ public class Sequence : BtNode {
         }
     }
 
-    public override NodeState evaluate(Blackboard blackboard) {
-        return evaluateStep(blackboard);
+    public override NodeState Evaluate(Blackboard blackboard) {
+        return EvaluateStep(blackboard);
     }
 
-    public NodeState evaluateCache(Blackboard blackboard)
+    public NodeState EvaluateCache(Blackboard blackboard)
     {
         // already fired
         if ( m_nodeState != NodeState.RUNNING ) {
@@ -50,7 +50,7 @@ public class Sequence : BtNode {
         // check remaining nodes
         while (runningNode < m_nodes.Count) {
             BtNode node = m_nodes[runningNode];
-            NodeState nodeStatus = node.evaluate( blackboard );
+            NodeState nodeStatus = node.Evaluate( blackboard );
             
             // all must be success
             if ( nodeStatus == NodeState.FAILURE) {
@@ -68,11 +68,11 @@ public class Sequence : BtNode {
         return m_nodeState;
     }
 
-    public NodeState evaluateStep(Blackboard blackboard) {
+    public NodeState EvaluateStep(Blackboard blackboard) {
         bool anyChildRunning = false;
 
         foreach( BtNode node in m_nodes) {
-            switch ( node.evaluate(blackboard) ) {
+            switch ( node.Evaluate(blackboard) ) {
                 case NodeState.FAILURE:
                     m_nodeState = NodeState.FAILURE;
                     return m_nodeState;

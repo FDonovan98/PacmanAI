@@ -69,7 +69,7 @@ public class Blackboard
         int replacementIndex = int.MaxValue;
         foreach (AIRememberedItem element in rememberedItems[(int)memoryType])
         {
-            if (!element.trackingRealObject)
+            if (!element.activeMemory)
             {
                 replacementIndex = i;
                 break;

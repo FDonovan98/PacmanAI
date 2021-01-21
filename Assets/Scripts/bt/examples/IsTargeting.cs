@@ -11,7 +11,7 @@ public class IsTargeting : BtNode
         m_memoryType = memoryType;
     }
 
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
         if (blackboard.target == null)
         {

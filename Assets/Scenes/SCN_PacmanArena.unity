@@ -10839,7 +10839,7 @@ PrefabInstance:
     - target: {fileID: 575204773655746966, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.05
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 575204773655746966, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
@@ -10894,7 +10894,7 @@ PrefabInstance:
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
@@ -12890,6 +12890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttackRange: 0
+  m_minRange: 0.1
 --- !u!135 &682269308
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16367,7 +16368,7 @@ PrefabInstance:
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 575204773655746970, guid: 844f842ed20f2614da2e53867a98692f,
         type: 3}
@@ -17252,6 +17253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttackRange: 10
+  m_minRange: 0.1
 --- !u!135 &925682411
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32181,8 +32183,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611920742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24, y: 0, z: 24}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 24, y: 0.3, z: 24}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children:
   - {fileID: 151602814}
   - {fileID: 1383250859}
@@ -43869,6 +43871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttackRange: 0
+  m_minRange: 0.1
 --- !u!135 &2118311779
 SphereCollider:
   m_ObjectHideFlags: 0

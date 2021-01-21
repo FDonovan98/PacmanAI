@@ -27,7 +27,7 @@ public class IsClose : BtNode
         useBlackboardTarget = false;
     }
 
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
         float distance = float.MaxValue;
 
@@ -45,7 +45,7 @@ public class IsClose : BtNode
             float newDist;
             foreach (AIRememberedItem element in blackboard.rememberedItems[(int)memoryType])
             {
-                if (element.trackingRealObject)
+                if (element.activeMemory)
                 {
                     newDist = Vector3.Distance(element.position, blackboard.owner.transform.position);
                     if (newDist < distance)

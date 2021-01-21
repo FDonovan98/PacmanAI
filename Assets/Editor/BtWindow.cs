@@ -17,12 +17,12 @@ public class BtWindow : EditorWindow
         BtNode isTargetSelected = new Sequence(new IsTargeting(MemoryType.Pill), new Inverter(new IsClose(1)));
         BtNode stickyTarget = new Selector(isTargetSelected, new TargetRandom(MemoryType.Pill));
 
-        BtNode wonderToPill = new Sequence(stickyTarget, new TowardsTarget());
-        return wonderToPill;
+        // BtNode wonderToPill = new Sequence(stickyTarget, new TowardsTarget(m_minApproachRange));
+        return stickyTarget;
 
-        //BtNode chasePlayer = new Sequence(new TargetPlayer("Player"), new IsClose(3), new TowardsTarget());
-        //return chasePlayer;
-        //return new Selector(chasePlayer, wonderToPill);
+    //     BtNode chasePlayer = new Sequence(new TargetClose("Player"), new IsClose(3), new TowardsTarget(m_minApproachRange));
+    //     return chasePlayer;
+    //     return new Selector(chasePlayer, wonderToPill);
     }
 
     [MenuItem("Window/Bt Editor")]

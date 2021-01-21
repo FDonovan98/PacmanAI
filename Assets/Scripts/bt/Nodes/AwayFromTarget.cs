@@ -13,7 +13,7 @@ public class AwayFromTarget : BtNode
         m_fleeDistance = fleeDistance;
     }
 
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
         if (m_agent == null)
         {

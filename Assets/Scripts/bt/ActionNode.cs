@@ -13,7 +13,7 @@ public class ActionNode : BtNode {
         reset();
     }
 
-    public override NodeState evaluate(Blackboard blackboard) {
+    public override NodeState Evaluate(Blackboard blackboard) {
         if ( m_nodeState != NodeState.RUNNING ) {
             return m_nodeState;
         }

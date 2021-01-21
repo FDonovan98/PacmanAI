@@ -18,9 +18,9 @@ public class Inverter : BtNode
         m_node = node;
     }
 
-    public override NodeState evaluate(Blackboard blackboard)
+    public override NodeState Evaluate(Blackboard blackboard)
     {
-        switch( m_node.evaluate(blackboard) )
+        switch( m_node.Evaluate(blackboard) )
         {
             case NodeState.FAILURE:
                 m_nodeState = NodeState.SUCCESS;
